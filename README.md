@@ -4,33 +4,12 @@
 
 
 ## DESCRIPTION
-Knapsack problem solver using local search technique known as Genetic Algorithm.
-
-We maximize value without exceeding the maximum weight of the backpack
-
-    #Population
-        it is a list of chromosomes
-
-    # Chromosome:
-        list of boxes
-
-
-    # boxes: each box has 3 attributes
-            1.  status: binary value which represents whether it is to be
-                    packed or not
-
-                    Note: 1 -> packed, 0 -> not packed
-
-            2. weight
-
-            3. value 
-
-    
+Artificial Neural Network using Backpropagation algorithm
 
 
 
 ## PYTHON FILES
-genetic_algorithm.py
+ann.py
 
 
 ## REQUIREMENTS
@@ -39,11 +18,12 @@ Minimum Python requirements (earlier versions may work but have not been tested)
 
 * Python 3 (3.7.6)
 * termcolor module for printing
+* numpy
 
 
 ## HOW TO RUN IT
 
-`python3 genetic_algorithm.py`
+`python3 ann.py`
 
 
 after running the above command,

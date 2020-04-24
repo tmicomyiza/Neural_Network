@@ -4,7 +4,6 @@ from termcolor import colored
 
 class ANN:
 
-
     def __init__(self, num_inputs=4 , num_outputs=1, hidden=[3, 5]):
         self.num_inputs = num_inputs   # dimension of input
         self.num_outputs = num_outputs # dimension of output
@@ -141,10 +140,15 @@ def prety_print(output, inputs):
 
     for i in range (len(output)):
         prediciton = output[i]
-        if prediciton > 0.5:
+        if prediciton > 0.9:
             print(colored("{} is Iris-Versicolor".format(inputs[i]), "green"))
+        
+        elif prediciton > 0.5:
+            print(colored("{} is Iris-Virginica".format(inputs[i]),"green"))
+
         else:
             print(colored("{} is Iris-setosa".format(inputs[i]),"green"))
+
 
         print(colored ("==================", "blue"))
 
@@ -165,20 +169,35 @@ if __name__ == "__main__":
                 [5.5,2.3,4.0,1.3],
                 [4.9,2.4,3.3,1.0],
                 [6.1,2.9,4.7,1.4],
-                [5.9,3.2,4.8,1.8]])
+                [5.9,3.2,4.8,1.8],
+                [6.3,2.9,5.6,1.8],
+                [6.3,3.3,6.0,2.5],
+                [5.8,2.7,5.1,1.9],
+                [7.1,3.0,5.9,2.1],
+                [4.9,2.5,4.5,1.7],
+                [7.3,2.9,6.3,1.8]
+                ])
 
-    targets = np.array([[0], [0], [0], [0], [0], [0], [1], [1], [1], [1], [1], [1]])
+    targets = np.array([[0], [0], [0], [0], [0], [0],
+                        [1], [1], [1], [1], [1], [1],
+                        [0.6],[0.6],[0.6],[0.6],[0.6]])
     
     # train
     ann.train(inputs, targets, 1000, 0.1)
 
 
     #testing
-    test_input = np.array([[5.0,3.3,1.4,0.2],
-                            [5.9,3.0,4.2,1.5],
-                            [7.7,2.8,6.7,2.0]
+    test_input = np.array([[4.6,3.2,1.4,0.2],
+                            [5.3,3.7,1.5,0.2],
+                            [5.0,3.3,1.4,0.2],
+                            [6.2,2.9,4.3,1.3],
+                            [5.1,2.5,3.0,1.1],
+                            [5.7,2.8,4.1,1.3],
+                            [6.5,3.0,5.2,2.0],
+                            [6.2,3.4,5.4,2.3],
+                            [5.9,3.0,5.1,1.8]
                             ])
-    test_target = np.array([[0],[1],[1]])
+    test_target = np.array([[0],[0], [0],[1],[1],[1], [0.6], [0.6], [0.6]])
 
     output = ann.forward_propagate(test_input)
 
@@ -188,3 +207,7 @@ if __name__ == "__main__":
     # print("input is {}".format(test_input))
     # print("it returned {}".format(output))
     # print("it should be {}".format(test_target))
+
+    # results = ann.forward_propagate(inputs)
+
+    # print(results)
