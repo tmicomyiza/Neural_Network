@@ -1,4 +1,4 @@
-# Knapsack problem solver
+# Artificial Neural Network
 
 ## AUTHOR:  Mico Micomyiza Theogene
 
@@ -29,6 +29,17 @@ The database contains 150 inputs.
 20% is for testing
 
 The inputs are randomly allocatated to either group.
+
+# The data base contains the following attributes:
+
+* Sepal length in cm
+* Sepal width in cm
+* Petal length in cm
+* Petal width in cm
+* Class:
+    * Iris Setosa
+    * Iris Versicolour
+    * Iris Virginica
 
 
 ## PYTHON FILES

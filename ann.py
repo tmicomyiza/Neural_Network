@@ -64,8 +64,6 @@ class ANN:
 
 
 
-
-
     # method to implement back propagations
     def back_propagate(self, error):
 
@@ -157,7 +155,7 @@ def print_helper(data):
     return temp
 
 
-def prety_print(output, inputs, targets):
+def prety_print(ann, output, inputs, targets):
     filename = open("results.txt", "w")
 
     accuracy = 0
@@ -165,13 +163,13 @@ def prety_print(output, inputs, targets):
     targets = print_helper(targets)
     current = ""
 
-    for i in range (len(output)):
+    for i in range (len(targets)):
         prediciton = output[i]
-        if prediciton > 0.8:
+        if prediciton > 0.7:
             filename.write("ANN predicts {} as Iris-versicolor, and it is {}\n".format(inputs[i], targets[i]))
             current = "Iris-versicolor"
         
-        elif prediciton > 0.4:
+        elif prediciton > 0.3:
             filename.write("ANN predicts {} as Iris-virginica, and it is {}\n".format(inputs[i], targets[i]))
             current = "Iris-virginica"
 
@@ -268,6 +266,7 @@ def transform (data):
             train_targets.append(0.5)
             i += 1
 
+   
     return [train_inputs, train_targets]
 
 
@@ -293,7 +292,6 @@ def select_10 (data):
 
 def run(ann, train_inputs, train_targets, valid_inputs, valid_targets, test_inputs, test_targets):
 
-    
     inputs = np.array(train_inputs)
     targets = np.array(train_targets)
 
@@ -316,7 +314,7 @@ def testing(ann, test_inputs, test_targets):
     
     output = ann.forward_propagate(test_inputs)
 
-    prety_print(output, test_inputs, test_targets)
+    prety_print(ann, output, test_inputs, test_targets)
 
     status = input(colored("Do you want to provide manual tests? (y/n) ", "green"))
 
