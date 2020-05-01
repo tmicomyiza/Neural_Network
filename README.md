@@ -5,6 +5,8 @@
 
 ## DESCRIPTION
 Artificial Neural Network using Backpropagation algorithm
+that categorizes data into three groups of plants.
+Iris-setosa, Iris-versicolor, and Iris-virginica
 
 # Structure
 
