@@ -63,7 +63,11 @@ class ANN:
         return activations
 
 
-    def back_propagate(self, error, verbose=False):
+
+
+
+    # method to implement back propagations
+    def back_propagate(self, error):
 
         # start from the output layer to input layer
         for i in reversed(range(len(self.derivatives))):
@@ -81,12 +85,13 @@ class ANN:
             # incrementing the error as we loop through layers
             error = np.dot(delta, self.weights[i].T)
 
-            if verbose:
-                print("Derivatives for w{}: {}".format(i, self.derivatives[i]))
-
         return error
 
 
+
+
+
+    # calculates and updates the weights 
     def gradient_descent(self, learning_rate):
         for i in range (len (self.weights)):
             weights = self.weights[i]
@@ -98,6 +103,8 @@ class ANN:
             self.weights[i] = weights
 
 
+
+    # method to train the algorithm
     def train(self, inputs, targets, epochs, learning_rate):
 
         for i in range (epochs):
@@ -115,12 +122,12 @@ class ANN:
                 self.back_propagate(error)
 
                 # learning rate
-                self.gradient_descent(learning_rate=1)
+                self.gradient_descent(learning_rate=0.1)
 
                 sum_error += self.mse(target, output)
             
             #report error 
-            # print("Error: {} at epoch {}".format(sum_error / len(inputs), i))
+            print("Error: {} at epoch {}".format(sum_error / len(inputs), i))
 
     def mse(self, target, output):
         return np.average((target - output)**2)
@@ -134,80 +141,213 @@ class ANN:
         return 1 / (1 + np.exp(-p))
 
 
+def print_helper(data):
+    temp = []
+    for item in data:
+        if item == 0:
+            temp.append("Iris-setosa")
+
+        elif item == 1:
+            temp.append("Iris-versicolor")
+
+        else:
+            temp.append("Iris-virginica")
 
 
-def prety_print(output, inputs):
+    return temp
+
+
+def prety_print(output, inputs, targets):
+    filename = open("results.txt", "w")
+
+    accuracy = 0
+    #format targets into strings
+    targets = print_helper(targets)
+    current = ""
 
     for i in range (len(output)):
         prediciton = output[i]
-        if prediciton > 0.9:
-            print(colored("{} is Iris-Versicolor".format(inputs[i]), "green"))
+        if prediciton > 0.8:
+            filename.write("ANN predicts {} as Iris-versicolor, and it is {}\n".format(inputs[i], targets[i]))
+            current = "Iris-versicolor"
         
-        elif prediciton > 0.5:
-            print(colored("{} is Iris-Virginica".format(inputs[i]),"green"))
+        elif prediciton > 0.4:
+            filename.write("ANN predicts {} as Iris-virginica, and it is {}\n".format(inputs[i], targets[i]))
+            current = "Iris-virginica"
 
         else:
-            print(colored("{} is Iris-setosa".format(inputs[i]),"green"))
+            filename.write("ANN predicts {} as Iris-setosa, and it is {}\n".format(inputs[i], targets[i]))
+            current = "Iris-setosa"
 
 
-        print(colored ("==================", "blue"))
+        if targets[i] == current:
+            accuracy += 1
+
+    filename.close()
+
+    print(colored("Accuracy is {}".format(accuracy/ len(targets)), "green"))
+
+def training_data(ann):
+    infile = open("ANN-Iris-data.txt", 'r')
+    Iris_data = infile.readlines()
+
+
+    Iris_Setosa  = []  
+    Iris_versicolor = []  
+    Iris_virginica = []
+
+    # systematically categorize the input into three parts
+    # Iris-Setosa, Iris-versicolor, and Iris-virginica
+    for i,line in enumerate(Iris_data):
+        if i < 50:
+            Iris_Setosa.append(line.split(","))
+        
+        elif i < 100:
+            Iris_versicolor.append(line.split(","))
+
+        else:
+            Iris_virginica.append(line.split(","))
+
+
+    # randomly select testing data with is 20 % from each group
+    testing_data = select_10(Iris_Setosa) + select_10(Iris_versicolor) + select_10 (Iris_virginica)
+
+    # randomly select validation data with is 20 % from each group
+    validation_data = select_10(Iris_Setosa) + select_10(Iris_versicolor) + select_10 (Iris_virginica)
+
+    # rest is training data
+    training_data = Iris_Setosa + Iris_versicolor + Iris_virginica
+
+
+    infile.close()
+
+    process_data_instatiate (ann, training_data, validation_data, testing_data)
+
+
+
+def process_data_instatiate(ann, train_data, validation_data, test_data):
+
+    train = transform(train_data)
+    train_inputs = train[0]
+    train_targets = train[1]
+
+    test = transform(test_data)
+    test_inputs = test[0]
+    test_targets = test[1]
+
+    valid = transform(validation_data)
+    valid_inputs = valid[0]
+    valid_targets = valid[1]
+
+    # run actual program
+    run(ann, train_inputs, train_targets, valid_inputs, valid_targets, test_inputs, test_targets)
+
+
+
+
+# returns a tuple of two lists
+def transform (data):
+    # Transform train_data into a format the algorithm understand
+    train_inputs = []
+    train_targets = []
+    i = 0
+    for item in data:
+        outputs = str(item.pop())[:-1]
+        inputs = list(map(float, item))
+        train_inputs.append(inputs)
+
+        if outputs == 'Iris-setosa':
+            train_targets.append(0)
+            i += 1
+
+        elif outputs == 'Iris-versicolor':
+            train_targets.append(1)
+            i += 1
+
+        elif outputs == 'Iris-virginica':
+            train_targets.append(0.5)
+            i += 1
+
+    return [train_inputs, train_targets]
+
+
+
+
+
+# randomly selects 10 elements from the given list
+# and returns a list containing the selected elements
+def select_10 (data):
+    selected = []
+    for i in range (10):
+        n = len(data)
+        index = np.random.randint(0, n)
+        selected.append(data[index])
+
+        data.pop(index)
+
+    return selected
+
+
+
+
+
+def run(ann, train_inputs, train_targets, valid_inputs, valid_targets, test_inputs, test_targets):
+
+    
+    inputs = np.array(train_inputs)
+    targets = np.array(train_targets)
+
+    # train
+    ann.train(inputs, targets, 500, 0.1)
+
+    validation_input = np.array(valid_inputs)
+    validation_targets = np.array(valid_targets)
+
+    #forward propagate
+    ann.forward_propagate(validation_input)
+
+    #prety_print(output, test_input)
+    testing(ann, np.array(test_inputs), np.array(test_targets))
+
+
+
+
+def testing(ann, test_inputs, test_targets):
+    
+    output = ann.forward_propagate(test_inputs)
+
+    prety_print(output, test_inputs, test_targets)
+
+    status = input(colored("Do you want to provide manual tests? (y/n) ", "green"))
+
+
+    # manual testing
+    if status.lower() == 'y':
+        inputs = input(colored("Enter your inputs separated by space: ", "green"))
+        inputs = inputs.split()
+
+        inputs = list(map(float, inputs))
+        print(inputs)
+
+        target = input(colored("What is the output? (Iris-setosa, Iris-versicolor, or Iris-virginica)","green"))
+
+        if target == "Iris-virginica":
+            testing(ann, np.array([inputs]), np.array([0.5]))
+
+        elif target == "Iris-setosa":
+            testing(ann, np.array([inputs]), np.array([0]))
+
+        elif target == "Iris-versicolor":
+            testing(ann, np.array([inputs]), np.array([1]))
+
+        else:
+            print(colored("Error: Invalid input {}".format(target), "red"))
+
+
 
 if __name__ == "__main__":
     # create ANN
     ann = ANN(4, 1, [5])
 
-    # some inputs
-
-    inputs = np.array ([[5.1,3.5,1.4,0.2],
-                [4.9,3.0,1.4,0.2],
-                [5.7,4.4,1.5,0.4],
-                [5.1,3.5,1.4,0.3],
-                [5.2,4.1,1.5,0.1],
-                [5.1,3.3,1.7,0.5],
-                [7.0,3.2,4.7,1.4],
-                [6.4,3.2,4.5,1.5],
-                [5.5,2.3,4.0,1.3],
-                [4.9,2.4,3.3,1.0],
-                [6.1,2.9,4.7,1.4],
-                [5.9,3.2,4.8,1.8],
-                [6.3,2.9,5.6,1.8],
-                [6.3,3.3,6.0,2.5],
-                [5.8,2.7,5.1,1.9],
-                [7.1,3.0,5.9,2.1],
-                [4.9,2.5,4.5,1.7],
-                [7.3,2.9,6.3,1.8]
-                ])
-
-    targets = np.array([[0], [0], [0], [0], [0], [0],
-                        [1], [1], [1], [1], [1], [1],
-                        [0.6],[0.6],[0.6],[0.6],[0.6]])
-    
-    # train
-    ann.train(inputs, targets, 1000, 0.1)
-
-
-    #testing
-    test_input = np.array([[4.6,3.2,1.4,0.2],
-                            [5.3,3.7,1.5,0.2],
-                            [5.0,3.3,1.4,0.2],
-                            [6.2,2.9,4.3,1.3],
-                            [5.1,2.5,3.0,1.1],
-                            [5.7,2.8,4.1,1.3],
-                            [6.5,3.0,5.2,2.0],
-                            [6.2,3.4,5.4,2.3],
-                            [5.9,3.0,5.1,1.8]
-                            ])
-    test_target = np.array([[0],[0], [0],[1],[1],[1], [0.6], [0.6], [0.6]])
-
-    output = ann.forward_propagate(test_input)
-
-    prety_print(output, test_input)
-    # print("\n \n \n")
-    # print("testing results: ")
-    # print("input is {}".format(test_input))
-    # print("it returned {}".format(output))
-    # print("it should be {}".format(test_target))
-
-    # results = ann.forward_propagate(inputs)
-
-    # print(results)
+    # this will read in data from database file and then run the algorithm
+    training_data(ann)
