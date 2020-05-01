@@ -122,7 +122,7 @@ class ANN:
                 self.back_propagate(error)
 
                 # learning rate
-                self.gradient_descent(learning_rate=0.1)
+                self.gradient_descent(learning_rate=1)
 
                 sum_error += self.mse(target, output)
             
@@ -298,7 +298,7 @@ def run(ann, train_inputs, train_targets, valid_inputs, valid_targets, test_inpu
     targets = np.array(train_targets)
 
     # train
-    ann.train(inputs, targets, 500, 0.1)
+    ann.train(inputs, targets, 1000, 0.1)
 
     validation_input = np.array(valid_inputs)
     validation_targets = np.array(valid_targets)
