@@ -82,9 +82,10 @@ Once it finished running the tests, the results will be written on a file name
 *e.g ANN predicts [5.1 3.3 1.7 0.5] as Iris-setosa, and it is Iris-setosa
 
 * the program will also print error as it the algorithm goes through trainning.
-* when it finishes running, it will print the accuracy algorithm is classifying the
+* when it finishes running, it will print the accuracy algorithm in classifying the
     the test given
 
+# the program will provide you a chance of to provide manual tests. The results will be save on the "results.txt" file
 
 # Reference
 * https://towardsdatascience.com/everything-you-need-to-know-about-neural-networks-and-backpropagation-machine-learning-made-easy-e5285bc2be3a

@@ -105,6 +105,8 @@ class ANN:
     # method to train the algorithm
     def train(self, inputs, targets, epochs, learning_rate):
 
+        previous_error = 0
+
         for i in range (epochs):
             sum_error = 0
             # iterate through inputs and targests
@@ -122,10 +124,18 @@ class ANN:
                 # learning rate
                 self.gradient_descent(learning_rate=1)
 
+                previous_error = sum_error
+
                 sum_error += self.mse(target, output)
+
+
+  
             
             #report error 
             print("Error: {} at epoch {}".format(sum_error / len(inputs), i))
+
+            if previous_error > sum_error: 
+                break 
 
     def mse(self, target, output):
         return np.average((target - output)**2)
@@ -162,6 +172,7 @@ def prety_print(ann, output, inputs, targets):
     #format targets into strings
     targets = print_helper(targets)
     current = ""
+
 
     for i in range (len(targets)):
         prediciton = output[i]
@@ -321,7 +332,7 @@ def testing(ann, test_inputs, test_targets):
 
     # manual testing
     if status.lower() == 'y':
-        inputs = input(colored("Enter your inputs separated by space: ", "green"))
+        inputs = input(colored("Enter: Sepal length,Sepal width, Petal length, Petal width separated by space: ", "green"))
         inputs = inputs.split()
 
         inputs = list(map(float, inputs))

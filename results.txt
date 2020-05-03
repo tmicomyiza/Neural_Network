@@ -1,30 +1,30 @@
-ANN predicts [5.3 3.7 1.5 0.2] as Iris-setosa, and it is Iris-setosa
-ANN predicts [5.2 4.1 1.5 0.1] as Iris-setosa, and it is Iris-setosa
+ANN predicts [5.1 3.4 1.5 0.2] as Iris-setosa, and it is Iris-setosa
+ANN predicts [5.4 3.4 1.5 0.4] as Iris-setosa, and it is Iris-setosa
+ANN predicts [4.4 2.9 1.4 0.2] as Iris-setosa, and it is Iris-setosa
 ANN predicts [4.8 3.  1.4 0.1] as Iris-setosa, and it is Iris-setosa
-ANN predicts [5.  3.2 1.2 0.2] as Iris-setosa, and it is Iris-setosa
-ANN predicts [4.3 3.  1.1 0.1] as Iris-setosa, and it is Iris-setosa
 ANN predicts [5.  3.5 1.6 0.6] as Iris-setosa, and it is Iris-setosa
-ANN predicts [4.7 3.2 1.6 0.2] as Iris-setosa, and it is Iris-setosa
+ANN predicts [5.1 3.8 1.6 0.2] as Iris-setosa, and it is Iris-setosa
 ANN predicts [4.5 2.3 1.3 0.3] as Iris-setosa, and it is Iris-setosa
-ANN predicts [5.4 3.9 1.3 0.4] as Iris-setosa, and it is Iris-setosa
-ANN predicts [5.1 3.8 1.9 0.4] as Iris-setosa, and it is Iris-setosa
-ANN predicts [6.1 2.9 4.7 1.4] as Iris-versicolor, and it is Iris-versicolor
-ANN predicts [5.7 3.  4.2 1.2] as Iris-versicolor, and it is Iris-versicolor
-ANN predicts [5.8 2.6 4.  1.2] as Iris-versicolor, and it is Iris-versicolor
-ANN predicts [6.2 2.2 4.5 1.5] as Iris-virginica, and it is Iris-versicolor
-ANN predicts [5.7 2.6 3.5 1. ] as Iris-versicolor, and it is Iris-versicolor
-ANN predicts [6.  2.7 5.1 1.6] as Iris-virginica, and it is Iris-versicolor
-ANN predicts [5.8 2.7 3.9 1.2] as Iris-versicolor, and it is Iris-versicolor
+ANN predicts [4.6 3.1 1.5 0.2] as Iris-setosa, and it is Iris-setosa
+ANN predicts [5.7 4.4 1.5 0.4] as Iris-setosa, and it is Iris-setosa
+ANN predicts [4.4 3.2 1.3 0.2] as Iris-setosa, and it is Iris-setosa
+ANN predicts [5.5 2.6 4.4 1.2] as Iris-versicolor, and it is Iris-versicolor
+ANN predicts [6.2 2.9 4.3 1.3] as Iris-versicolor, and it is Iris-versicolor
+ANN predicts [5.  2.  3.5 1. ] as Iris-versicolor, and it is Iris-versicolor
+ANN predicts [5.7 2.9 4.2 1.3] as Iris-versicolor, and it is Iris-versicolor
+ANN predicts [5.5 2.5 4.  1.3] as Iris-versicolor, and it is Iris-versicolor
+ANN predicts [5.8 2.7 4.1 1. ] as Iris-versicolor, and it is Iris-versicolor
+ANN predicts [6.3 2.5 4.9 1.5] as Iris-virginica, and it is Iris-versicolor
+ANN predicts [6.1 3.  4.6 1.4] as Iris-versicolor, and it is Iris-versicolor
 ANN predicts [6.4 2.9 4.3 1.3] as Iris-versicolor, and it is Iris-versicolor
-ANN predicts [5.9 3.  4.2 1.5] as Iris-versicolor, and it is Iris-versicolor
-ANN predicts [6.6 3.  4.4 1.4] as Iris-versicolor, and it is Iris-versicolor
+ANN predicts [6.7 3.1 4.4 1.4] as Iris-versicolor, and it is Iris-versicolor
+ANN predicts [6.7 3.  5.2 2.3] as Iris-virginica, and it is Iris-virginica
+ANN predicts [6.9 3.1 5.4 2.1] as Iris-virginica, and it is Iris-virginica
+ANN predicts [6.1 2.6 5.6 1.4] as Iris-virginica, and it is Iris-virginica
+ANN predicts [5.7 2.5 5.  2. ] as Iris-virginica, and it is Iris-virginica
+ANN predicts [6.9 3.2 5.7 2.3] as Iris-virginica, and it is Iris-virginica
 ANN predicts [6.  2.2 5.  1.5] as Iris-virginica, and it is Iris-virginica
+ANN predicts [6.1 3.  4.9 1.8] as Iris-virginica, and it is Iris-virginica
+ANN predicts [6.5 3.2 5.1 2. ] as Iris-virginica, and it is Iris-virginica
 ANN predicts [7.2 3.2 6.  1.8] as Iris-virginica, and it is Iris-virginica
-ANN predicts [5.8 2.7 5.1 1.9] as Iris-virginica, and it is Iris-virginica
-ANN predicts [6.5 3.  5.2 2. ] as Iris-virginica, and it is Iris-virginica
-ANN predicts [7.4 2.8 6.1 1.9] as Iris-virginica, and it is Iris-virginica
-ANN predicts [6.7 3.3 5.7 2.5] as Iris-virginica, and it is Iris-virginica
-ANN predicts [5.8 2.7 5.1 1.9] as Iris-virginica, and it is Iris-virginica
 ANN predicts [6.7 2.5 5.8 1.8] as Iris-virginica, and it is Iris-virginica
-ANN predicts [7.9 3.8 6.4 2. ] as Iris-virginica, and it is Iris-virginica
-ANN predicts [4.9 2.5 4.5 1.7] as Iris-virginica, and it is Iris-virginica
