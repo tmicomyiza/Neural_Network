@@ -4,10 +4,10 @@ from termcolor import colored
 
 class ANN:
 
-    def __init__(self, num_inputs=4 , num_outputs=1, hidden=[3, 5]):
+    def __init__(self, num_inputs=4 , num_outputs=1, hidden= 5):
         self.num_inputs = num_inputs   # dimension of input
         self.num_outputs = num_outputs # dimension of output
-        self.hidden = hidden # number of hidden layers
+        self.hidden = [hidden] # number of hidden layers
 
 
         layers = [self.num_inputs] + self.hidden + [self.num_outputs]
@@ -148,6 +148,16 @@ class ANN:
     def sigmoid(self, p):
         return 1 / (1 + np.exp(-p))
 
+
+
+#############################################################################
+#         Note                                                              #
+#                                                                           #
+#         Methods to help use the ANN solve our problem. Most of these      #
+#         methods prepare the data before sent to ANN and translate ANN     #
+#          results                                                          #
+#                                                                           #
+#############################################################################
 
 def print_helper(data):
     temp = []
@@ -356,7 +366,7 @@ def testing(ann, test_inputs, test_targets):
 
 if __name__ == "__main__":
     # create ANN
-    ann = ANN(4, 1, [5])
+    ann = ANN(4, 1, 6)
 
     # this will read in data from database file and then run the algorithm
     training_data(ann)
